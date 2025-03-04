@@ -1,0 +1,11 @@
+  =>>>  The working flow of this project.At first the frontend parts are divided into reusuable components.As we moving through this project you will find the use of some things like.
+
+1)Resuable components and hooks(useState,useEffect)
+
+2)The major components are placed in the components folder with meaningful names of each component folder.Then Each  folder contains the jsx files.
+
+3)The nav folder contains nav file which is exported into App.jsx file.
+
+4)Then the menu_swiper directory comes into play which contains Menu_swiper.jsx file, contains swiperjs library in react.Then ,Props passes through Menu_swiper.jsx to Menu_body.jsx.According to the value Passes from Menu_swiper.jsx the component in Menu_body also passes the props to the affected component.
+
+5)Practical approach Example:When we click the veg item the 0 value is passed to Menu_body.jsx file.Here is the condition if it is "0" it passes other props like name,price,image_link to the Special_eachitem.jsx file.It is similar to other items lists also.
