@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,6 +8,12 @@ export default function Nav() {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLinkClick = () => {
+    if (window.innerWidth < 768) { // Check if it's a mobile view
+      setIsOpen(false); // Close the menu when a link is clicked
+    }
   };
 
   useEffect(() => {
@@ -55,29 +62,30 @@ export default function Nav() {
       </div>
       <div
         ref={menuRef}
-        className={`${
-          isOpen ? "block" : "hidden"
-        } md:flex md:items-center w-full md:w-auto mt-2 md:mt-0`}
+        className={`${isOpen ? "block" : "hidden"} md:flex md:items-center w-full md:w-auto mt-2 md:mt-0`}
       >
         <div className="flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 w-full md:w-auto">
-          <a
-            href="#"
+          <Link
+            to="/"
             className="block py-2 px-4 text-sm hover:bg-gray-200 rounded"
+            onClick={handleLinkClick}
           >
             Menu
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/contactus"
             className="block py-2 px-4 text-sm hover:bg-gray-200 rounded"
+            onClick={handleLinkClick}
           >
             Contact Us
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/aboutus"
             className="block py-2 px-4 text-sm hover:bg-gray-200 rounded"
+            onClick={handleLinkClick}
           >
             AboutUs
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

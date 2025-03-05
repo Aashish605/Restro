@@ -1,19 +1,19 @@
 import "./App.css";
-import Nav from "./components/nav/Nav";
-import Menu_swiper from "./components/menu_swiper/Menu_swiper";
-import Menu_body from "./components/menu_body/Menu_body";
-import Footer from "./components/footer/Footer";
-import Cart from "./components/cart/Cart";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import WrapComponent from "./Wrapcomponent";
+import Contactus from "./components/nav/Contactus";
+import Aboutus from "./components/nav/Aboutus";
+import Cart_lists from "./components/cart/Cart_lists";
 function App() {
   return (
-    <>
-      <Nav />
-      <Menu_swiper />
-      <Menu_body />
-      <Cart/>
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<WrapComponent />} />
+        <Route path="/contactus" element={<Contactus />} />
+        <Route path="/aboutus" element={<Aboutus />} />
+        <Route path="/carting" element={<Cart_lists />} />
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
