@@ -7,9 +7,11 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Menu_body from "../menu_body/Menu_body";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Menu_swiper() {
   const [items, setItems] = useState(0);
+  const [ImgData,setImgData] = useState([])
 
   const orderlists = (num) => {
     setItems(num);
@@ -19,10 +21,39 @@ export default function Menu_swiper() {
     console.log(items);
   }, [items]);
 
+  useEffect(() => {
+    const getimg = async () => {
+      try {
+        const res = await axios.get('http://localhost:3000/find');
+        setImgData(res.data)
+        console.log(res.data);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getimg()
+  },[]
+  )
   return (
     <>
       <div className="flex justify-center items-center text-black-600 font-semibold text-3xl ">
-        Our Menu
+        Our Menu 
+        {/* {ImgData.length > 0 ? (
+        <div>
+          {ImgData.map((item, index) => (
+            <div key={index}>
+              {item.title} and {item.price}
+              <img
+                className="p-2 w-full h-auto"
+                src={`data:image/jpeg;base64,${item.photo}`} // Assuming the photo is stored as a base64 string
+                alt={item.title}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>data not found</div>
+      )} */}
       </div>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
