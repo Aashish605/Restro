@@ -18,10 +18,10 @@ const Upload = () => {
         formData.append('section', data.section);
         formData.append('photo', data.photo[0]); // Append the image file
 
-        sendData(formData,data.section);
+        sendData(formData, data.section);
     };
 
-    const sendData = async (formData,section) => {
+    const sendData = async (formData, section) => {
         try {
             const res = await axios.post(`http://localhost:3000/${section}`, formData, {
                 headers: {
@@ -36,11 +36,16 @@ const Upload = () => {
 
     return (
         <>
-            <div className='bg-black h-[100vh] text-white p-5 '>
+            <div className='bg-gray-600 h-[100vh] text-white p-5 '>
                 <form className='' onSubmit={handleSubmit(onSubmit)}>
                     <input className='border-2 border-white my-2' placeholder='Name of food'  {...register("title", { required: true })} />
                     <br />
-                    <input className='border-2 border-white my-2' placeholder='route'  {...register("section", { required: true })} />
+                    <select className='border-2 border-white my-2' {...register("section",{required:true})}>
+                        <option className='text-black' value="Nveg">Non-veg</option>
+                        <option className='text-black' value="sd">Soft Drinks</option>
+                        <option className='text-black' value="hd">Hard Drinks</option>
+                        <option className='text-black' value="veg">veg</option>
+                    </select>
                     <br />
                     <input className='border-2 border-white mb-2 ' placeholder='price' {...register("price", { pattern: /^\d+$/, required: true })} />
                     {errors?.price?.type === "required" && <p>This field is required</p>}
