@@ -22,3 +22,11 @@ export const getNveg = async (req,res) => {
         res.status(500).json(error)
     }
 }
+
+export const updateNveg = async (req,res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
